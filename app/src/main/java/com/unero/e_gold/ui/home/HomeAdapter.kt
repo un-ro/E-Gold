@@ -2,7 +2,7 @@ package com.unero.e_gold.ui.home
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.unero.e_gold.ui.PriceFragment
+import com.unero.e_gold.ui.price.PriceFragment
 import com.unero.e_gold.ui.TransactionFragment
 import com.unero.e_gold.ui.WalletFragment
 
