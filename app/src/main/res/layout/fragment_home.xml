@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,8 +34,7 @@
                 android:layout_toEndOf="@id/profileImage"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="16dp"
-                style="@style/username"
-                android:text="Someone" />
+                style="@style/username" />
 
             <TextView
                 android:id="@+id/profileEmail"

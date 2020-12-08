@@ -34,8 +34,8 @@ class PriceFragment : Fragment() {
 
     fun setup(){
         val dd = listOf(0.5f, 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 10.0f, 25.0f, 50.0f, 100.0f)
-        val b = 893000
-        val s = 853010
+        val b = 899000
+        val s = 858920
         for (d in dd){
             listPrice.add(Price(d.toString(), "Rp " + (d*s), "Rp " + (d*b)))
         }
