@@ -14,13 +14,17 @@ import kotlinx.coroutines.launch
 @InternalCoroutinesApi
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val profiles: LiveData<List<Profile>>
+    private val profiles: LiveData<Profile>
     private val repository: ProfileRepo
 
     init {
         val profileDao = AppDatabase.getDatabase(application).profileDao()
         repository = ProfileRepo(profileDao)
         profiles = repository.readDataProfile
+    }
+
+    fun getProfile(): LiveData<Profile>{
+        return profiles
     }
 
     fun addProfile(profile: Profile){

@@ -14,5 +14,5 @@ interface ProfileDao {
     suspend fun updateProfile(profile: Profile)
 
     @Query("SELECT * FROM  profile ORDER BY id ASC")
-    fun getProfiles(): LiveData<List<Profile>>
+    fun getProfiles(): LiveData<Profile>
 }

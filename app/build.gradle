@@ -80,4 +80,14 @@ dependencies {
     // RecylerView + BRVAH
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
+    // Okhtttp
+    implementation 'com.squareup.okhttp3:okhttp:4.3.1'
+
+    // GSON
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
 }

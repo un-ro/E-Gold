@@ -14,8 +14,6 @@ abstract class AppDatabase: RoomDatabase() {
 
     abstract fun profileDao(): ProfileDao
 
-    abstract val context: Context
-
     companion object{
         @Volatile
         private var INSTANCE: AppDatabase? = null
