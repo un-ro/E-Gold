@@ -10,7 +10,7 @@ import kotlinx.android.parcel.Parcelize
 data class Profile(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val username: String,
-    val email: String,
+    var username: String,
+    var email: String,
     var image: String
 ): Parcelable

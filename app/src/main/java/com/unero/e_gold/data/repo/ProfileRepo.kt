@@ -13,7 +13,7 @@ class ProfileRepo(private val profileDao: ProfileDao) {
         profileDao.addProfile(profile)
     }
 
-    suspend fun updateProfile(profile: Profile) {
+    fun updateProfile(profile: Profile) {
         profileDao.updateProfile(profile)
     }
 }

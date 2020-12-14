@@ -4,7 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.unero.e_gold.ui.profile.ProfileViewModel" />
+        <variable
+            name="profile"
+            type="com.unero.e_gold.models.Profile" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,6 +26,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
+            android:text="@{viewModel.profileLiveData().username}"
             android:hint="Nama Pengguna"
             android:inputType="textPersonName"
             android:textColorHint="@color/txtGrey"
@@ -36,6 +42,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
+            android:text="@{viewModel.profileLiveData().email}"
             android:hint="Alamat Email"
             android:inputType="textEmailAddress"
             android:textColorHint="@color/txtGrey"
@@ -51,6 +58,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:text="Update Profile"
+            android:onClick="@{() -> viewModel.btnUpdate(username.text.toString(), email.text.toString())}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/email" />
