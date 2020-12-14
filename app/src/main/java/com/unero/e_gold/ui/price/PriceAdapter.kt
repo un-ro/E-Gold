@@ -3,7 +3,6 @@ package com.unero.e_gold.ui.price
 import androidx.databinding.DataBindingUtil
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.unero.e_gold.R
 import com.unero.e_gold.databinding.ItemPriceBinding
 import com.unero.e_gold.models.Price
 

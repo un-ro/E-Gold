@@ -1,3 +1,7 @@
 package com.unero.e_gold.models
 
-class Price (var weight: String, var sell: String, var buy: String)
+data class Price(
+    val weight: Float,
+    val sell: String,
+    val buy: String
+)

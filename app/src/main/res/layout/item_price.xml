@@ -20,7 +20,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_margin="16dp"
-            android:src="@drawable/bitcoin" />
+            android:src="@drawable/bitcoin"
+            android:contentDescription="Bitcoin" />
 
         <TextView
             android:id="@+id/weight"
@@ -31,7 +32,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/icon"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:text="@{Price.weight}" />
+            android:text="@{String.valueOf(Price.weight)}" />
 
         <TextView
             android:id="@+id/sell"

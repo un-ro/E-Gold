@@ -10,11 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
-import androidx.navigation.NavDirections
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
-import com.unero.e_gold.ProfileApplication
 import com.unero.e_gold.R
 import com.unero.e_gold.databinding.FragmentHomeBinding
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -25,9 +22,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
     @InternalCoroutinesApi
-    private val viewModel: ProfileViewModel by viewModels {
-        ProfileViewModelFactory((requireActivity().application as ProfileApplication).repository)
-    }
+    private lateinit var mViewModel: HomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,10 +34,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-        viewModel.profile.observe(viewLifecycleOwner){
-            binding.profileUsername.text = it.susername
-            binding.profileEmail.text = it.em
-        }
+        mViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         binding.lifecycleOwner = this
         // Inflate the layout for this fragment
         return binding.root

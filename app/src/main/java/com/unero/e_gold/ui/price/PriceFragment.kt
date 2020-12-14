@@ -37,7 +37,7 @@ class PriceFragment : Fragment() {
         val b = 899000
         val s = 858920
         for (d in dd){
-            listPrice.add(Price(d.toString(), "Rp " + (d*s), "Rp " + (d*b)))
+            listPrice.add(Price(d, "Rp " + (d*s), "Rp " + (d*b)))
         }
     }
 }
