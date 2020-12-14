@@ -13,16 +13,30 @@
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_buyFragment"
+            app:destination="@id/buyFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.unero.e_gold.ui.ProfileFragment"
+        android:name="com.unero.e_gold.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_profileFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <argument
-            android:name="profile"/>
+            android:name="profile"
+            app:argType="com.unero.e_gold.models.Profile"/>
+    </fragment>
+    <fragment
+        android:id="@+id/buyFragment"
+        android:name="com.unero.e_gold.ui.buy.BuyFragment"
+        android:label="fragment_buy"
+        tools:layout="@layout/fragment_buy"
+        app:startDestination="@id/action_buyFragment_to_homeFragment">
+        <action
+            android:id="@+id/action_buyFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

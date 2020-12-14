@@ -4,15 +4,19 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
+import com.unero.e_gold.data.dao.ProfileDao
+import com.unero.e_gold.data.dao.TransactionDao
 import com.unero.e_gold.models.Profile
+import com.unero.e_gold.models.Transaction
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.internal.synchronized
 
-@Database(entities = [Profile::class], version = 1, exportSchema = false)
+@Database(entities = [Profile::class, Transaction::class], version = 1, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
 
+    // Dao
     abstract fun profileDao(): ProfileDao
+    abstract fun transacDao(): TransactionDao
 
     companion object{
         @Volatile

@@ -1,4 +1,4 @@
-package com.unero.e_gold.data
+package com.unero.e_gold.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

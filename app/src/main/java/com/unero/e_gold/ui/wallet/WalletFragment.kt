@@ -1,4 +1,4 @@
-package com.unero.e_gold.ui
+package com.unero.e_gold.ui.wallet
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

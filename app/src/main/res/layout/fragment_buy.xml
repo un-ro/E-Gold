@@ -4,56 +4,69 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="transact"
+            type="com.unero.e_gold.models.Transaction" />
+        <variable
+            name="viewModel"
+            type="com.unero.e_gold.ui.buy.BuyViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        tools:context=".ui.profile.ProfileFragment">
+        tools:context=".BuyFragment">
 
         <EditText
-            android:id="@+id/username"
+            android:id="@+id/extHargaBeli"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:hint="Nama Pengguna"
-            android:inputType="textPersonName"
-            android:textColorHint="@color/txtGrey"
+            android:hint="Harga Beli"
+            android:inputType="numberSigned"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <EditText
-            android:id="@+id/email"
+        <Spinner
+            android:id="@+id/spinnerBerat"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="Alamat Email"
-            android:inputType="textEmailAddress"
-            android:textColorHint="@color/txtGrey"
+            android:entries="@array/berat_value"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username" />
+            app:layout_constraintTop_toBottomOf="@+id/extHargaBeli" />
 
         <Button
-            android:id="@+id/btnUpdate"
+            android:id="@+id/btnTabungan"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="Tambah Tabungan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/extDate" />
+
+        <EditText
+            android:id="@+id/extDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:text="Update Profile"
+            android:focusableInTouchMode="false"
+            android:ems="10"
+            android:inputType="date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email" />
-
+            app:layout_constraintTop_toBottomOf="@+id/spinnerBerat" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -4,6 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="viewModel"
+            type="com.unero.e_gold.ui.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,12 +24,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="16dp">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profileImage"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="16dp"
-                android:src="@drawable/default_account" />
+                android:src="@drawable/default_account"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
 
             <TextView
                 android:id="@+id/profileUsername"
@@ -35,6 +40,7 @@
                 android:layout_toEndOf="@id/profileImage"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="16dp"
+                android:text="@{viewModel.profile.username}"
                 style="@style/username" />
 
             <TextView
@@ -45,8 +51,8 @@
                 android:layout_toEndOf="@id/profileImage"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                style="@style/email"
-                android:text="email" />
+                android:text="@{viewModel.profile.email}"
+                style="@style/email" />
 
             <ImageView
                 android:id="@+id/profileEdit"
@@ -94,7 +100,15 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tabLayout">
-
         </androidx.viewpager2.widget.ViewPager2>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addTransaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_baseline_add_circle_outline_24"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -3,8 +3,8 @@ package com.unero.e_gold.ui.home
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.unero.e_gold.ui.price.PriceFragment
-import com.unero.e_gold.ui.TransactionFragment
-import com.unero.e_gold.ui.WalletFragment
+import com.unero.e_gold.ui.transaction.TransactionFragment
+import com.unero.e_gold.ui.wallet.WalletFragment
 
 class HomeAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int {

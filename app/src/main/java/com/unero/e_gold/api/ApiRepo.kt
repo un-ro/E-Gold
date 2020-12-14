@@ -25,10 +25,10 @@ class ApiRepo() {
                 call: Call<Outer<Price>?>,
                 response: Response<Outer<Price>?>
             ) {
-                price.setValue(response.body())
+                price.value = response.body()
             }
             override fun onFailure(call: Call<Outer<Price>?>, t: Throwable) {
-                price.setValue(null)
+                price.value = null
             }
         })
         return price
