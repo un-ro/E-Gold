@@ -3,7 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.unero.e_gold.ui.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.unero.e_gold.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/homeFragment"
@@ -11,30 +34,30 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            android:id="@+id/action_homeFragment_to_editFragment"
+            app:destination="@id/editFragment" />
         <action
             android:id="@+id/action_homeFragment_to_buyFragment"
             app:destination="@id/buyFragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.unero.e_gold.ui.profile.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        android:id="@+id/editFragment"
+        android:name="com.unero.e_gold.ui.edit.EditFragment"
+        android:label="fragment_edit"
+        tools:layout="@layout/fragment_edit" >
         <action
-            android:id="@+id/action_profileFragment_to_homeFragment"
+            android:id="@+id/action_editFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <argument
-            android:name="profile"
-            app:argType="com.unero.e_gold.models.Profile"/>
+            android:name="currentAccount"
+            app:argType="com.unero.e_gold.data.model.Account" />
     </fragment>
     <fragment
         android:id="@+id/buyFragment"
         android:name="com.unero.e_gold.ui.buy.BuyFragment"
         android:label="fragment_buy"
-        tools:layout="@layout/fragment_buy"
-        app:startDestination="@id/action_buyFragment_to_homeFragment">
+        tools:layout="@layout/fragment_buy" >
         <action
             android:id="@+id/action_buyFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
