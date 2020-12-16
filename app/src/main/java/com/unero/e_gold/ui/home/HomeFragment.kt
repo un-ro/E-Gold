@@ -2,78 +2,60 @@ package com.unero.e_gold.ui.home
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.net.Uri
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavDirections
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.tabs.TabLayoutMediator
 import com.unero.e_gold.R
 import com.unero.e_gold.databinding.FragmentHomeBinding
-import com.unero.e_gold.models.Profile
+import com.unero.e_gold.ui.viewmodel.AccountViewModel
+import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.InternalCoroutinesApi
-import java.lang.Exception
 
+@InternalCoroutinesApi
 class HomeFragment : Fragment() {
 
-    @InternalCoroutinesApi
-    private lateinit var mViewModel: HomeViewModel
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var mViewModel: AccountViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    @InternalCoroutinesApi
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-        mViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        binding.viewModel = mViewModel
-        binding.lifecycleOwner = this
+        mViewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
+        binding.vieModel = mViewModel
         // Inflate the layout for this fragment
         return binding.root
     }
 
-    @InternalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Navigation to Update Profile
-        binding.profileEdit.setOnClickListener {
-            val profile = mViewModel.getProfile().value
-            if (profile != null){
-                val action = HomeFragmentDirections.actionHomeFragmentToProfileFragment(profile)
-                Navigation.findNavController(requireView()).navigate(action)
-            }
-        }
-
-        // Navigation to Add Gold
-        binding.addTransaction.setOnClickListener {
-            val action: NavDirections = HomeFragmentDirections.actionHomeFragmentToBuyFragment()
-            Navigation.findNavController(requireView()).navigate(action)
-        }
-
-        // Choose Image from Gallery
-        binding.profileImage.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "image/*"
-            startActivityForResult(intent, 1)
-        }
-
-        // Update Image at LiveData when changed
-        mViewModel.getProfile().observe(viewLifecycleOwner, {
-            binding.profileImage.setImageURI(Uri.parse(it.image))
+        // viewModel ke UI
+        mViewModel.accounts.observe(viewLifecycleOwner, {
+            binding.txtUsername.text = it.username
+            binding.txtEmail.text = it.email
+            binding.profileImage.setImageBitmap(pathToImage(it.image))
         })
+
+        binding.profileImage.setOnClickListener {
+            pickGallery()
+        }
+
+        binding.cvAccount.setOnClickListener{
+            val action = HomeFragmentDirections.actionHomeFragmentToEditFragment(mViewModel.accounts.value!!)
+            findNavController().navigate(action)
+        }
 
         // ViewPager + TabLayout
         binding.viewPager.adapter = HomeAdapter(this)
@@ -87,20 +69,35 @@ class HomeFragment : Fragment() {
         tab.attach()
     }
 
-    @InternalCoroutinesApi
+    private fun pathToImage(image: String): Bitmap {
+        return BitmapFactory.decodeFile(image)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 1 && resultCode == RESULT_OK){
-            try {
-                val imageuri: Uri? = data?.data
-                var profile: Profile? = mViewModel.getProfile().value
-                if (profile != null) {
-                    profile.image = imageuri.toString()
-                    mViewModel.updateProfile(profile)
-                }
-            } catch (e: Exception){
-                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+        when (resultCode) {
+            RESULT_OK -> {
+                //Image Uri will not be null for RESULT_OK
+                val fileUri = data?.data
+                binding.profileImage.setImageURI(fileUri)
+                //You can also get File Path from intent
+                val filePath:String = ImagePicker.getFilePath(data)!!
+                Toasty.success(requireContext(), filePath, Toast.LENGTH_SHORT).show()
+            }
+            ImagePicker.RESULT_ERROR -> {
+                Toasty.error(requireContext(), ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                Toasty.warning(requireContext(), "Task Cancelled", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun pickGallery() {
+        ImagePicker.with(this)
+            .crop()
+            .compress(1024) // Compress file to max 1MB
+            .galleryOnly()
+            .start()
     }
 }
