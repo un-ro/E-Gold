@@ -1,7 +1,7 @@
 package com.unero.e_gold.api
 
 data class Hasil(
-     var data: Price,
+     var data: Price
 )
 
 data class Price(
