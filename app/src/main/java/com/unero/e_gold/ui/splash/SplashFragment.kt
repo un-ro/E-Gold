@@ -1,68 +1,55 @@
 package com.unero.e_gold.ui.splash
 
-import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.unero.e_gold.R
+import com.unero.e_gold.data.viewmodel.AccountViewModel
+import com.unero.e_gold.databinding.FragmentSplashBinding
 import es.dmoral.toasty.Toasty
-import kotlinx.coroutines.*
-import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.InternalCoroutinesApi
 
 @InternalCoroutinesApi
-class SplashFragment : Fragment(), CoroutineScope {
+class SplashFragment : Fragment() {
 
-    private lateinit var sharedPref: SharedPreferences
-    private lateinit var sharedEditor: SharedPreferences.Editor
+    private lateinit var mViewModel: AccountViewModel
+    private lateinit var binding: FragmentSplashBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPref = requireContext().getSharedPreferences("GoldSharedPreference", 0)
-        sharedEditor = sharedPref.edit()
+        mViewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_splash, container, false)
+        binding.lifecycleOwner = this
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_splash, container, false)
+        return binding.root
     }
 
-    // Coroutine Scope
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main + Job()
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        launch {
-            delay(2500) // Delay for 2.5s
-            // Coroutine in Main / UI Thread
-            withContext(Dispatchers.Main){
+        mViewModel.anyAccount.observe(viewLifecycleOwner, {
+            Handler(Looper.getMainLooper()).postDelayed({
                 // Navigation
-                if (firstTime()){
+                if (it.isNullOrEmpty()){
                     Toasty.info(requireContext(), "Create your data first", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
                 } else {
-                    Toasty.normal(requireContext(), "Welcome", Toast.LENGTH_SHORT).show()
+                    Toasty.normal(requireContext(), "Welcome ${it[0].username}", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
                 }
-            }
-        }
-    }
-
-    private fun firstTime(): Boolean {
-        return if (sharedPref.getBoolean("firstTime", true)){
-            sharedEditor.putBoolean("firstTime", false)
-            sharedEditor.commit()
-            sharedEditor.apply()
-            true
-        } else {
-            false
-        }
+            }, 1000)
+        })
     }
 }

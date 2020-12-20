@@ -5,19 +5,20 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.tabs.TabLayoutMediator
 import com.unero.e_gold.R
+import com.unero.e_gold.data.viewmodel.AccountViewModel
 import com.unero.e_gold.databinding.FragmentHomeBinding
-import com.unero.e_gold.ui.viewmodel.AccountViewModel
 import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.InternalCoroutinesApi
 
@@ -34,6 +35,7 @@ class HomeFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         mViewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
         binding.vieModel = mViewModel
+        binding.lifecycleOwner = this
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -43,9 +45,15 @@ class HomeFragment : Fragment() {
 
         // viewModel ke UI
         mViewModel.accounts.observe(viewLifecycleOwner, {
-            binding.txtUsername.text = it.username
-            binding.txtEmail.text = it.email
-            binding.profileImage.setImageBitmap(pathToImage(it.image))
+            if (it.image.isEmpty()){
+                binding.txtUsername.text = it.username
+                binding.txtEmail.text = it.email
+                binding.profileImage.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.default_account))
+            } else{
+                binding.txtUsername.text = it.username
+                binding.txtEmail.text = it.email
+                binding.profileImage.setImageBitmap(pathToImage(it.image))
+            }
         })
 
         binding.profileImage.setOnClickListener {

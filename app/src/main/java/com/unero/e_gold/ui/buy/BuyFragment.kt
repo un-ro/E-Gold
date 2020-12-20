@@ -1,19 +1,19 @@
 package com.unero.e_gold.ui.buy
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.unero.e_gold.R
 import com.unero.e_gold.data.model.Transact
+import com.unero.e_gold.data.viewmodel.TransactViewModel
 import com.unero.e_gold.databinding.FragmentBuyBinding
-import com.unero.e_gold.ui.viewmodel.TransactViewModel
-import com.unero.e_gold.ui.model.Buy
+import com.unero.e_gold.ui.Buy
 import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.InternalCoroutinesApi
 

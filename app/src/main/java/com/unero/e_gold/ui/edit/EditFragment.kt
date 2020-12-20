@@ -6,12 +6,13 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.text.TextUtils
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -19,8 +20,8 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import com.github.dhaval2404.imagepicker.constant.ImageProvider
 import com.unero.e_gold.R
 import com.unero.e_gold.data.model.Account
+import com.unero.e_gold.data.viewmodel.AccountViewModel
 import com.unero.e_gold.databinding.FragmentEditBinding
-import com.unero.e_gold.ui.viewmodel.AccountViewModel
 import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.InternalCoroutinesApi
 
@@ -83,20 +84,20 @@ class EditFragment : Fragment() {
             if (filePath.isEmpty()) {
                 mViewModel.update(
                     Account(
-                    binding.edtEmail.text.toString(),
-                    binding.edtUsername.text.toString(),
-                    args.currentAccount.image
-                )
+                        binding.edtEmail.text.toString(),
+                        binding.edtUsername.text.toString(),
+                        args.currentAccount.image
+                    )
                 )
                 Toasty.success(requireContext(), "Update Profile Success", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_editFragment_to_homeFragment)
             } else {
                 mViewModel.update(
                     Account(
-                    binding.edtEmail.text.toString(),
-                    binding.edtUsername.text.toString(),
-                    filePath
-                )
+                        binding.edtEmail.text.toString(),
+                        binding.edtUsername.text.toString(),
+                        filePath
+                    )
                 )
                 Toasty.success(requireContext(), "Update Profile Success", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_editFragment_to_homeFragment)
@@ -107,9 +108,15 @@ class EditFragment : Fragment() {
     }
 
     private fun fillForm() {
-        binding.edtUsername.setText(args.currentAccount.username)
-        binding.edtEmail.setText(args.currentAccount.email)
-        binding.imageProfile.setImageBitmap(pathToImage(args.currentAccount.image))
+        if (args.currentAccount.image.isEmpty()){
+            binding.edtUsername.setText(args.currentAccount.username)
+            binding.edtEmail.setText(args.currentAccount.email)
+            binding.imageProfile.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.default_account))
+        } else{
+            binding.edtUsername.setText(args.currentAccount.username)
+            binding.edtEmail.setText(args.currentAccount.email)
+            binding.imageProfile.setImageBitmap(pathToImage(args.currentAccount.image))
+        }
     }
 
     private fun pathToImage(image: String): Bitmap {

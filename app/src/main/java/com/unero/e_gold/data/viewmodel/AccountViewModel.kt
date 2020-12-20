@@ -1,12 +1,12 @@
-package com.unero.e_gold.ui.viewmodel
+package com.unero.e_gold.data.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.unero.e_gold.data.AppDatabase
 import com.unero.e_gold.data.model.Account
 import com.unero.e_gold.data.repository.AccountRepository
-import com.unero.e_gold.data.AppDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.launch
@@ -22,6 +22,8 @@ class AccountViewModel(application: Application) : AndroidViewModel(application)
 
     // READ
     val accounts: LiveData<Account> = repository.accounts
+
+    val anyAccount: LiveData<List<Account>> = repository.anyAccount
 
     // CREATE
     fun add(account: Account){

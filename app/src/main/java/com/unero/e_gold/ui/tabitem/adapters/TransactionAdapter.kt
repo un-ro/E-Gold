@@ -1,4 +1,4 @@
-package com.unero.e_gold.ui.tabitem.adapter
+package com.unero.e_gold.ui.tabitem.adapters
 
 import androidx.databinding.DataBindingUtil
 import com.chad.library.adapter.base.BaseQuickAdapter

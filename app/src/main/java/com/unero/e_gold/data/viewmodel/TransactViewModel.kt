@@ -1,4 +1,4 @@
-package com.unero.e_gold.ui.viewmodel
+package com.unero.e_gold.data.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

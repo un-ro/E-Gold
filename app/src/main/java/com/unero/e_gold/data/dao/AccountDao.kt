@@ -15,4 +15,7 @@ interface AccountDao {
 
     @Query("SELECT * FROM account")
     fun accounts(): LiveData<Account>
+
+    @Query("SELECT * FROM account LIMIT 1")
+    fun anyAccount(): LiveData<List<Account>>
 }

@@ -1,8 +1,8 @@
-package com.unero.e_gold.ui.model
+package com.unero.e_gold.ui
 
 import com.github.arisan.annotation.Form
 
-class Buy(){
+class Buy {
     @Form(position = 1)
     private var price: Int = 0
 

@@ -7,6 +7,8 @@ import com.unero.e_gold.data.model.Account
 class AccountRepository(private val accountDao: AccountDao) {
     val accounts: LiveData<Account> = accountDao.accounts()
 
+    val anyAccount: LiveData<List<Account>> = accountDao.anyAccount()
+
     suspend fun add(account: Account){
         accountDao.add(account)
     }

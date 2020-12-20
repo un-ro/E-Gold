@@ -54,37 +54,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.cardview:cardview:1.0.0"
-
-    // ViewPager Dots
-    implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
-
-    // ArisanForm
-    implementation 'com.github.ricoarisandyw:ArisanForm:2.1.0'
-
-    // ViewModel
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
-    // LiveData
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
-
-    // Room
-    implementation "androidx.room:room-ktx:2.2.5"
-    implementation "androidx.room:room-runtime:2.2.5"
-    kapt "androidx.room:room-compiler:2.2.5"
-
-    // ViewPager2
-    implementation "androidx.viewpager2:viewpager2:1.0.0"
-
-    // Navigation - Kotlin
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.2'
-
-    // RecylerView + BRVAH
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
-
-    // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
 
     // Circle Image View
     implementation 'de.hdodenhof:circleimageview:3.1.0'
@@ -94,4 +65,33 @@ dependencies {
 
     // ImagePicker
     implementation 'com.github.dhaval2404:imagepicker:1.7.5'
+
+    // ViewPager Dots
+    implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
+
+    // ArisanForm
+    implementation 'com.github.ricoarisandyw:ArisanForm:2.1.0'
+
+    // ViewModel & LiveData
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+
+    // Room
+    implementation "androidx.room:room-ktx:2.2.5"
+    implementation "androidx.room:room-runtime:2.2.5"
+    kapt "androidx.room:room-compiler:2.2.5"
+
+    // Navigation - Kotlin
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.2'
+
+    // BRVAH
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // FitButton
+    implementation "com.github.nikartm:fit-button:1.2.1"
 }
