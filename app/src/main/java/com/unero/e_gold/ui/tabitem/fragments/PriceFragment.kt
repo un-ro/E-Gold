@@ -4,19 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.unero.e_gold.R
 import com.unero.e_gold.data.model.Price
 import com.unero.e_gold.data.repository.ApiRepository
 import com.unero.e_gold.data.viewmodel.ApiFactory
 import com.unero.e_gold.data.viewmodel.ApiViewModel
 import com.unero.e_gold.databinding.FragmentPriceBinding
+import com.unero.e_gold.ui.tabitem.adapters.PriceAdapter
+import com.unero.e_gold.ui.tabitem.adapters.TransactionAdapter
+import es.dmoral.toasty.Toasty
 
 class PriceFragment : Fragment() {
 
-    private var listPrice = arrayListOf<Price>()
     private lateinit var mViewModel: ApiViewModel
     private lateinit var binding: FragmentPriceBinding
 
@@ -42,12 +46,19 @@ class PriceFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mViewModel.responses.observe(viewLifecycleOwner, {
             binding.text.text = it.data.date
+            setup(it.data.buy_price, it.data.sell_price)
         })
     }
 
     private fun setup(buy: Int, sell: Int){
+        val listPrice = ArrayList<Price>()
         val prices = arrayOf(0.5f, 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 10.0f, 25.0f, 50.0f, 100.0f)
         for (price in prices)
             listPrice.add(Price(price, (price*buy).toInt(), (price*sell).toInt()))
+        // Recycler
+        val adapter = PriceAdapter(R.layout.item_price, listPrice)
+        binding.rvPrice.layoutManager = LinearLayoutManager(context)
+        binding.rvPrice.adapter = adapter
+        Toasty.info(requireContext(), "SETUP SELESAI", Toast.LENGTH_LONG).show()
     }
 }

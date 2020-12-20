@@ -40,7 +40,13 @@ class TransactionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         mViewModel.listTransact.observe(viewLifecycleOwner,  {
-            setup(it)
+            if(it.isEmpty()){
+                binding.noItem.visibility = View.VISIBLE
+            } else {
+                binding.noItem.visibility = View.GONE
+                binding.rvTransaction.visibility = View.VISIBLE
+                setup(it)
+            }
         })
 
         binding.btnBuy.setOnClickListener{

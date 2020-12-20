@@ -2,12 +2,39 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
+        <variable
+            name="item"
+            type="com.unero.e_gold.data.model.Price" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/weight"
+            style="@style/txtBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(item.weight)}"
+            android:layout_marginStart="16dp"/>
+
+        <TextView
+            android:id="@+id/priceBuy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(item.buy)}"
+            style="@style/txtBlack"
+            android:layout_marginStart="50dp"
+            android:layout_toEndOf="@id/weight"/>
+
+        <TextView
+            android:id="@+id/priceSell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/priceBuy"
+            style="@style/txtBlack"
+            android:layout_marginStart="50dp"
+            android:text="@{String.valueOf(item.sell)}" />
+    </RelativeLayout>
 </layout>

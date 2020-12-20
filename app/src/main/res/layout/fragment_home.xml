@@ -14,8 +14,9 @@
         android:layout_height="match_parent"
         tools:context="ui.home.HomeFragment">
 
-        <androidx.cardview.widget.CardView
+        <soup.neumorphism.NeumorphCardView
             android:id="@+id/cvAccount"
+            app:neumorph_shapeType="pressed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -70,7 +71,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/profileImage"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+        </soup.neumorphism.NeumorphCardView>
         <View
             android:id="@+id/separator"
             android:layout_width="0dp"
@@ -96,8 +97,10 @@
             app:tabSelectedTextColor="@color/txtBlue"
             app:tabTextAppearance="@style/CustomTextAppearanceTab"
             app:tabTextColor="@color/email" />
-        <androidx.cardview.widget.CardView
+        <soup.neumorphism.NeumorphCardView
             android:id="@+id/cvTab"
+            style="@style/ShapeAppearance.Neumorph.CardView"
+            app:neumorph_shapeType="basin"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="8dp"
@@ -109,6 +112,6 @@
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
-        </androidx.cardview.widget.CardView>
+        </soup.neumorphism.NeumorphCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
