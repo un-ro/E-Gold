@@ -16,7 +16,7 @@
 
         <soup.neumorphism.NeumorphCardView
             android:id="@+id/cvAccount"
-            app:neumorph_shapeType="pressed"
+            app:neumorph_shapeType="flat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -48,6 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
                     android:text=""
+                    style="@style/txtBlack"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/divider"
                     app:layout_constraintStart_toEndOf="@+id/profileImage"/>
@@ -64,6 +65,7 @@
 
                 <TextView
                     android:id="@+id/txtEmail"
+                    style="@style/txtBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
@@ -72,17 +74,6 @@
                     app:layout_constraintStart_toEndOf="@id/profileImage"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </soup.neumorphism.NeumorphCardView>
-        <View
-            android:id="@+id/separator"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:translationY="-16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@color/separator"
-            app:layout_constraintTop_toBottomOf="@id/cvTab"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"

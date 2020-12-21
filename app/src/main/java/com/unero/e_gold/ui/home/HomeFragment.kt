@@ -56,10 +56,6 @@ class HomeFragment : Fragment() {
             }
         })
 
-        binding.profileImage.setOnClickListener {
-            pickGallery()
-        }
-
         binding.cvAccount.setOnClickListener{
             val action = HomeFragmentDirections.actionHomeFragmentToEditFragment(mViewModel.accounts.value!!)
             findNavController().navigate(action)
@@ -99,13 +95,5 @@ class HomeFragment : Fragment() {
                 Toasty.warning(requireContext(), "Task Cancelled", Toast.LENGTH_SHORT).show()
             }
         }
-    }
-
-    private fun pickGallery() {
-        ImagePicker.with(this)
-            .crop()
-            .compress(1024) // Compress file to max 1MB
-            .galleryOnly()
-            .start()
     }
 }
